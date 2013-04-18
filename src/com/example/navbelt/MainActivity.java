@@ -12,7 +12,7 @@ import android.view.View;
 public class MainActivity extends Activity {
 	private AudioManager am;
 	private AudioTrack audioTrack;
-    private final int duration = 3; // seconds
+    private final int duration = 120; // seconds
     private final int sampleRate = 8000;
     private final int numSamples = duration * sampleRate;
     private final double sample[] = new double[numSamples];
