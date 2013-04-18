@@ -4,5 +4,9 @@
     <string name="app_name">navbelt</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="left">&lt;</string>
+    <string name="right">&gt;</string>
+    <string name="forward">^</string>
+    <string name="stop">stop</string>
 
 </resources>
