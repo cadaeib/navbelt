@@ -47,11 +47,18 @@ public class MainActivity extends Activity {
 //    	am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_SAME, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
         audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,
                 sampleRate, AudioFormat.CHANNEL_CONFIGURATION_MONO,
-                AudioFormat.ENCODING_PCM_16BIT, numSamples,
-                AudioTrack.MODE_STATIC);
+                AudioFormat.ENCODING_PCM_16BIT, numSamples, AudioTrack.MODE_STATIC);
 
         audioTrack.write(generatedSnd, 0, generatedSnd.length);
         audioTrack.play();
+    }
+    
+    void stopSound() {
+    	if (audioTrack.getPlayState() == AudioTrack.PLAYSTATE_PLAYING) {
+        	audioTrack.flush();
+        	audioTrack.stop();
+        	audioTrack.release();
+    	}
     }
 
 	@Override
@@ -79,20 +86,24 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	public void playToneLeft(View view){
-		playTone(87);
+	public void playToneNorth(View view){
+		playTone(83);
 	}
 	
-	public void playToneForward(View view){
-		playTone(183);
+	public void playToneEast(View view){
+		playTone(163);
 	}
 
-	public void playToneRight(View view){
-		playTone(323);
+	public void playToneSouth(View view){
+		playTone(241);
 	}
 
+	public void playToneWest(View view){
+		playTone(353);
+	}
+	
 	public void playToneStop(View view){
-		playTone(467);
+		stopSound();
 	}
 	
 	void playTone(int freq) {

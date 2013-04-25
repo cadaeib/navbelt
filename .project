@@ -3,6 +3,7 @@
 	<name>navbelt</name>
 	<comment></comment>
 	<projects>
+		<project>gridlayout_v7</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
