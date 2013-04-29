@@ -55,4 +55,11 @@
             android:onClick="playToneSouth"
             android:text="S" />
 
+        <Button
+            android:id="@+id/button1"
+            android:layout_column="2"
+            android:layout_gravity="right|center_vertical"
+            android:layout_row="3"
+            android:text="@string/nextViewString" />
+
     </GridLayout>

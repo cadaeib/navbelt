@@ -8,5 +8,8 @@
     <string name="right">&gt;</string>
     <string name="forward">^</string>
     <string name="stop">stop</string>
+    <string name="title_activity_waypoints">Waypoints</string>
+    <string name="nextViewString">Next View</string>
+    <string name="getCurrentLocation">getCurrentLocation</string>
 
 </resources>

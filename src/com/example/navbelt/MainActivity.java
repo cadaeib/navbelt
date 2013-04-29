@@ -2,12 +2,14 @@ package com.example.navbelt;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 	private AudioManager am;
@@ -77,6 +79,15 @@ public class MainActivity extends Activity {
 		tg.startTone(ToneGenerator.TONE_DTMF_1, 99999);*/
 		genTone(440);
 		playSound();
+		
+		Button next = (Button) findViewById(R.id.button1);
+        next.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), Waypoints.class);
+                startActivityForResult(myIntent, 0);
+            }
+
+        });
 	}
 
 	@Override
