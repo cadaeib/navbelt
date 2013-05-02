@@ -11,5 +11,6 @@
     <string name="title_activity_waypoints">Waypoints</string>
     <string name="nextViewString">Next View</string>
     <string name="getCurrentLocation">getCurrentLocation</string>
+    <string name="back">\\/</string>
 
 </resources>

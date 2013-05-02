@@ -8,40 +8,50 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Waypoints" >
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_above="@+id/button4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
+        android:onClick="getCurrentLocation"
+        android:text="@string/getCurrentLocation" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:onClick="nextWaypoint"
+        android:text="@string/right" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignLeft="@+id/button2"
+        android:onClick="prevWaypoint"
+        android:text="@string/left" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/button2"
+        android:text="" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="84dp"
-        android:layout_marginRight="36dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
         android:text="Back" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="18dp"
-        android:text="TextView" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="46dp"
-        android:onClick="getCurrentLocation"
-        android:text="@string/getCurrentLocation" />
 
 </RelativeLayout>
