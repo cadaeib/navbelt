@@ -23,6 +23,7 @@ public class Waypoints extends Activity {
 	int targetindex;
 	double change_t = 4; // threshold distance to advance to next waypoint, in metres.
 	double warn_t = 6; // distance at which to send warning buzz about impending turn.
+	boolean stopNavigation;
 	
 	void populateWaypoints() {
 		double longitudes[] = {-74.651655, -74.651233, -74.651098, -74.650978, -74.649434, -74.648924};
@@ -61,6 +62,7 @@ public class Waypoints extends Activity {
         populateWaypoints();
         targetindex = 0;
         sp = new SoundPlayer();
+        stopNavigation = false;
         
         /* Use the LocationManager class to obtain GPS locations */
         LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -89,6 +91,7 @@ public class Waypoints extends Activity {
 	public void prevWaypoint(View view) {
 		if (targetindex > 0) targetindex--;
 		else targetindex = 0;
+		stopNavigation = false;
 	}
 	
 	/* Class My Location Listener */
@@ -108,39 +111,47 @@ public class Waypoints extends Activity {
     					+ loc.bearingTo(dest) + "\n"
     					+ ndname + "\n\n"
     					+ loc.distanceTo(dest) + " m";
+    		
+    		if (stopNavigation) llText = llText + "\nNavigation stopped.";
 
     		TextView text = (TextView) findViewById(R.id.textView1);
     		text.setText(llText);
     		
-    		// send appropriate tone to Arduino
-    		// ugly hack that relies on the string values of the direction enum.
-    		sp.generateSound(SoundPlayer.DirFreq.valueOf(directionName(loc.bearingTo(dest))));
-    		
-    		// check distance to the current destination
-    		assert(warn_t >= change_t);
-    		if (loc.distanceTo(dest) < warn_t) {
-    			if (loc.distanceTo(dest) > change_t) {
-    				// warn the user about the impending change in direction
-    				// for now: do nothing.
-    			} else {
-    				// we are within the change zone: update the waypoint index
-
-    				// buzz the phone to warn the user
-    				Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-    				v.vibrate(500);
-    				
-    				// check if we are at final destination
-    				if (targetindex == waypoints.size()-1) {
-    					// tell the arduino to stop
-    					sp.generateSound(SoundPlayer.DirFreq.STOP);
-    					
-    					// buzz the phone quickly three times.
-    					long[] times = {300,300,300,300,300,300}; 
-    					v.vibrate(times, -1);
-    				} else {
-    					targetindex++;
-    				}
-    			}
+    		if (!stopNavigation) {
+	    		
+	    		// send appropriate tone to Arduino
+	    		// ugly hack that relies on the string values of the direction enum.
+	    		sp.generateSound(SoundPlayer.DirFreq.valueOf(directionName(loc.bearingTo(dest))));
+	    		
+	    		// check distance to the current destination
+	    		assert(warn_t >= change_t);
+	    		if (loc.distanceTo(dest) < warn_t) {
+	    			if (loc.distanceTo(dest) > change_t) {
+	    				// warn the user about the impending change in direction
+	    				// for now: do nothing.
+	    			} else {
+	    				// we are within the change zone: update the waypoint index
+	
+	    				// buzz the phone to warn the user
+	    				Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+	    				v.vibrate(500);
+	    				
+	    				// check if we are at final destination
+	    				if (targetindex == waypoints.size()-1) {
+	    					// tell the arduino to stop
+	    					sp.generateSound(SoundPlayer.DirFreq.STOP);
+	    					
+	    					// buzz the phone quickly three times.
+	    					long[] times = {300,300,300,300,300,300}; 
+	    					v.vibrate(times, -1);
+	    					
+	    					stopNavigation = true;
+	    					
+	    				} else {
+	    					targetindex++;
+	    				}
+	    			}
+	    		}
     		}
     	}
 
