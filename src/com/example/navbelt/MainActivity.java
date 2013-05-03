@@ -50,7 +50,27 @@ public class MainActivity extends Activity {
 		sp.generateSound(SoundPlayer.DirFreq.WEST);
 	}
 	
+	public void playToneNorthEast(View view) {
+		sp.generateSound(SoundPlayer.DirFreq.NORTHEAST);
+	}
+	
+	public void playToneSouthWest(View view) {
+		sp.generateSound(SoundPlayer.DirFreq.SOUTHWEST);
+	}
+	
+	public void playToneNorthWest(View view) {
+		sp.generateSound(SoundPlayer.DirFreq.NORTHWEST);
+	}
+	
+	public void playToneSouthEast(View view) {
+		sp.generateSound(SoundPlayer.DirFreq.SOUTHEAST);
+	}
+	
 	public void playToneStop(View view){
+		sp.generateSound(SoundPlayer.DirFreq.STOP);
+	}
+	
+	public void silence(View view) {
 		sp.stopSound();
 	}
 }

@@ -12,5 +12,6 @@
     <string name="nextViewString">Next View</string>
     <string name="getCurrentLocation">getCurrentLocation</string>
     <string name="back">\\/</string>
+    <string name="silence">silence</string>
 
 </resources>

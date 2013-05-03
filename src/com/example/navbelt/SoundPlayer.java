@@ -87,9 +87,11 @@ public class SoundPlayer {
      * Stops the currently playing sound.
      */
     public void stopSound() {
-    	audioTrack.pause();
-    	audioTrack.flush();
-    	audioTrack.release();
+    	if (audioTrack.getPlayState() != audioTrack.PLAYSTATE_STOPPED) {
+    		audioTrack.pause();
+    		audioTrack.flush();
+    		audioTrack.release();
+    	}
     }
 	
 	
