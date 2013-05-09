@@ -70,6 +70,10 @@ public class MainActivity extends Activity {
 		sp.playSoundForStop();
 	}
 	
+	public void playToneCalibrate(View view) {
+		sp.playSoundForCalibrate();
+	}
+	
 	public void silence(View view) {
 		sp.stopSound();
 	}

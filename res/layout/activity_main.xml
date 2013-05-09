@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="4"
+    android:columnCount="6"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -95,17 +95,26 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_column="3"
-        android:layout_gravity="center_horizontal|bottom"
+        android:layout_column="4"
+        android:layout_gravity="left|bottom"
         android:layout_row="8"
         android:text="@string/nextViewString" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_column="3"
-        android:layout_gravity="center"
+        android:layout_column="4"
+        android:layout_gravity="left|center_vertical"
         android:layout_row="8"
         android:onClick="silence"
         android:text="@string/silence" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_height="85dp"
+        android:layout_column="3"
+        android:layout_gravity="left|bottom"
+        android:layout_row="8"
+        android:onClick="playToneCalibrate"
+        android:text="@string/cal2" />
 
 </GridLayout>

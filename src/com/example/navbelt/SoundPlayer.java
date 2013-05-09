@@ -49,6 +49,10 @@ public class SoundPlayer {
 		genTone(467); // the frequency of the stop signal is 467 Hz.
 	}
 	
+	private void genToneForCalibrate() {
+		genTone(483);
+	}
+	
     private void genTone(float freq){
         // fill out the array
         for (int i = 0; i < numSamples; ++i) {
@@ -106,6 +110,11 @@ public class SoundPlayer {
 	
 	public void playSoundForStop() {
 		genToneForStop();
+		playSound();
+	}
+	
+	public void playSoundForCalibrate() {
+		genToneForCalibrate();
 		playSound();
 	}
 

@@ -13,5 +13,7 @@
     <string name="getCurrentLocation">getCurrentLocation</string>
     <string name="back">\\/</string>
     <string name="silence">silence</string>
+    <string name="calibrate">Calibrate compass</string>
+    <string name="cal2">Calibrate\nCompass</string>
 
 </resources>
