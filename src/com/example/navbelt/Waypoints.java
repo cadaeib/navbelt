@@ -120,8 +120,7 @@ public class Waypoints extends Activity {
     		if (!stopNavigation) {
 	    		
 	    		// send appropriate tone to Arduino
-	    		// ugly hack that relies on the string values of the direction enum.
-	    		sp.generateSound(SoundPlayer.DirFreq.valueOf(directionName(loc.bearingTo(dest))));
+	    		sp.playSoundForHeading(loc.bearingTo(dest));
 	    		
 	    		// check distance to the current destination
 	    		assert(warn_t >= change_t);
@@ -139,7 +138,7 @@ public class Waypoints extends Activity {
 	    				// check if we are at final destination
 	    				if (targetindex == waypoints.size()-1) {
 	    					// tell the arduino to stop
-	    					sp.generateSound(SoundPlayer.DirFreq.STOP);
+	    					sp.playSoundForStop();
 	    					
 	    					// buzz the phone quickly three times.
 	    					long[] times = {300,300,300,300,300,300}; 

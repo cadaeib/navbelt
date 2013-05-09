@@ -19,28 +19,6 @@ public class SoundPlayer {
     private final int numSamples = duration * sampleRate;
     private final double sample[] = new double[numSamples];
     private final byte generatedSnd[] = new byte[2 * numSamples];
-    
-	public enum DirFreq {
-		NORTH (83),
-		NORTHEAST (127),
-		EAST (163),
-		SOUTHEAST (193),
-		SOUTH (241),
-		SOUTHWEST (293),
-		WEST (353),
-		NORTHWEST (397),
-		STOP (449);
-		
-		private int freq = 0;
-		
-		DirFreq(int freq) {
-			this.freq = freq;
-		}
-		
-		int getFreq() {
-			return freq;
-		}
-	}
 	
 	public SoundPlayer() {
 		super();
@@ -49,11 +27,29 @@ public class SoundPlayer {
 		audioTrack.write(generatedSnd, 0, generatedSnd.length);
 	}
 	
-	private void genTone(DirFreq df) {
-		genTone(df.getFreq());
+	/**
+	 * The frequency is related to the heading h by f = h + 75.
+	 * @param heading
+	 * @return
+	 */
+	private float getFreq(float heading) {
+		return 75 + heading;
 	}
 	
-    private void genTone(int freq){
+	/**
+	 * Fill the generatedSnd array with samples corresponding to a sine wave 
+	 * of the appropriate frequency for the desired heading.
+	 * @param heading
+	 */
+	private void genToneForHeading(float heading) {
+		genTone(getFreq(heading));
+	}
+	
+	private void genToneForStop() {
+		genTone(467); // the frequency of the stop signal is 467 Hz.
+	}
+	
+    private void genTone(float freq){
         // fill out the array
         for (int i = 0; i < numSamples; ++i) {
             sample[i] = Math.sin(2 * Math.PI * i / (sampleRate/freq));
@@ -68,7 +64,6 @@ public class SoundPlayer {
             // in 16 bit wav PCM, first byte is the low order byte
             generatedSnd[idx++] = (byte) (val & 0x00ff);
             generatedSnd[idx++] = (byte) ((val & 0xff00) >>> 8);
-
         }
     }
 
@@ -87,16 +82,30 @@ public class SoundPlayer {
      * Stops the currently playing sound.
      */
     public void stopSound() {
-    	if (audioTrack.getPlayState() != audioTrack.PLAYSTATE_STOPPED) {
+    	if (audioTrack.getPlayState() != AudioTrack.PLAYSTATE_STOPPED) {
     		audioTrack.pause();
     		audioTrack.flush();
     		audioTrack.release();
     	}
     }
 	
+	/**
+	 * Play the sound needed to signal to the Arduino to move toward the given absolute heading.
+	 * @param heading
+	 */
+	public void playSoundForHeading(float heading) {
+		// sanitize the input
+		float h = heading;
+		while (h < 0) h += 360;
+		h = h % 360;
+		
+		// produce the sound
+		genToneForHeading(h);
+		playSound();
+	}
 	
-	public void generateSound(DirFreq df) {
-		genTone(df);
+	public void playSoundForStop() {
+		genToneForStop();
 		playSound();
 	}
 

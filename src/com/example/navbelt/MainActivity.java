@@ -35,39 +35,39 @@ public class MainActivity extends Activity {
 	}
 
 	public void playToneNorth(View view){
-		sp.generateSound(SoundPlayer.DirFreq.NORTH);
+		sp.playSoundForHeading(0);
 	}
 	
 	public void playToneEast(View view){
-		sp.generateSound(SoundPlayer.DirFreq.EAST);
+		sp.playSoundForHeading(90);
 	}
 
 	public void playToneSouth(View view){
-		sp.generateSound(SoundPlayer.DirFreq.SOUTH);
+		sp.playSoundForHeading(180);
 	}
 
 	public void playToneWest(View view){
-		sp.generateSound(SoundPlayer.DirFreq.WEST);
+		sp.playSoundForHeading(270);
 	}
 	
 	public void playToneNorthEast(View view) {
-		sp.generateSound(SoundPlayer.DirFreq.NORTHEAST);
-	}
-	
-	public void playToneSouthWest(View view) {
-		sp.generateSound(SoundPlayer.DirFreq.SOUTHWEST);
-	}
-	
-	public void playToneNorthWest(View view) {
-		sp.generateSound(SoundPlayer.DirFreq.NORTHWEST);
+		sp.playSoundForHeading(45);
 	}
 	
 	public void playToneSouthEast(View view) {
-		sp.generateSound(SoundPlayer.DirFreq.SOUTHEAST);
+		sp.playSoundForHeading(135);
+	}
+	
+	public void playToneSouthWest(View view) {
+		sp.playSoundForHeading(225);
+	}
+	
+	public void playToneNorthWest(View view) {
+		sp.playSoundForHeading(315);
 	}
 	
 	public void playToneStop(View view){
-		sp.generateSound(SoundPlayer.DirFreq.STOP);
+		sp.playSoundForStop();
 	}
 	
 	public void silence(View view) {
