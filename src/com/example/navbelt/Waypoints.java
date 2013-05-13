@@ -26,8 +26,8 @@ public class Waypoints extends Activity {
 	boolean stopNavigation;
 	
 	void populateWaypoints() {
-		double longitudes[] = {-74.651655, -74.651233, -74.651098, -74.650978, -74.649434, -74.648924};
-		double latitudes[] = { 40.349905, 40.348948, 40.34896, 40.348832, 40.349228, 40.34848};
+		double longitudes[] = {-74.6517447795, -74.651233, -74.651098, -74.650978, -74.6493743174, -74.6489154291};
+		double latitudes[] = {40.3500154987, 40.348948, 40.34896, 40.348832, 40.3492603416, 40.3485507402};
 		assert (longitudes.length == latitudes.length);
 		
 		for (int i=0; i<latitudes.length; i++) {
