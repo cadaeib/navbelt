@@ -1,0 +1,9 @@
+Navbelt Android Readme
+
+The Android application provides a graphical interface for interacting with the Navbelt over an audio channel.
+
+The audio signaling is done using a SoundPlayer class we wrote. This class maintains the mappings of the range of possible headings, as well as the 'stop' and 'calibrate' commands, onto the underlying continuous frequency space (75-500 Hz) that is used to communicate with the Arduino, and exposes public methods that the other parts of the code can call to signal specific headings to the user.
+
+User interaction occurs through two Views. The first of these is the MainActivity view, which is primarily meant as a debugging interface. This allows the user to generate signals corresponding to 8 different directions to check that the buzzers work, as well as start calibrating the buzzers.
+
+The second View we implemented is the Waypoints activity. The code in Waypoints.java includes a hardcoded list of waypoints in an array of lat-long values; the LocationListener then selects the appropriate one to direct the user to given the user's current location, and uses the SoundPlayer class to send the appropriate tone to the Arduino indicating the absolute heading the user needs to move along. 
